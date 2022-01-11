@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package proto;
+
+message User {
+    int32 Id = 1;
+    string pwdHash = 3;
+    string name = 5;
+    int32 age = 7;
+    string addInfo = 9;
+    repeated string parent = 11;
+}
+
+
+service UserService{
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse){}
+}
+
+message Status {
+    int32 code = 1;
+    string message = 3;
+}
+
+message CreateUserRequest {
+    string name = 1;
+    string pwdHash = 3;
+    uint32 age = 5;
+    string addInfo = 7;
+}
+message CreateUserResponse {
+    string id = 1;
+    uint32 statusCode = 3;
+    Status status = 5;
+}
+
